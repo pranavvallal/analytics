@@ -57,4 +57,73 @@ apply(a1,2,sum)
 ?array
 
 #Data frame----
+(rollno = 1:30)
 
+(sname=paste('student',1:30,sep=''))
+(gender = sample(c('M','F'), size=30, replace = T, prob = c(.7,.3)))
+(marks= floor(runif(30,50,100)))
+dfl= data.frame(rollno, sname, gender, marks)
+head(dfl)
+tail(dfl)
+str(dfl)
+class(dfl)
+summary(dfl)
+
+(rollno= 1:30)
+dfl
+dfl$gender
+dfl[1:10,]
+dfl[,c(2,4)]
+dfl[marks>63,]
+dfl[marks>63 | gender=='F',]
+names(dfl) #names of columns
+dim(dfl) #Dimensions
+aggregate(dfl$marks, by=list(dfl$gender), FUN=mean)
+df2 = aggregate(marks~ gender,data=dfl,FUN=max)
+pie(x=df2$marks)
+barplot(df2$marks, col = 1:2)
+#using dplyr pa
+
+#Factors-----, 
+(grades = sample(c('A','B','C','D'), size=30, replace=T, prob=c(.3,.2,.4,.1)))
+table(grades)
+class(grades)
+gradesF = factor(grades)
+grades
+gradesF
+(gradesF1 = factor(grades, ordered=T))
+(gradesF2 = factor(grades, ordered=T,levels = c('D','C','B','A')))
+
+
+rollno= 1:3
+sname= c('S1','S2','S3')
+(sname=c(paste('S',1:3,sep='')))
+df= data.frame(rollno,sname)
+df
+#str,dim,class,summary
+
+str(df)
+#filter
+df$rollno
+df$sname
+
+rollno= 1:30
+rollno
+sname=c('Student1-xyz','Student2-xyz','Student3-xyz')
+(sname=c(paste('Student-xyz',1:30,sep = '')))
+
+(gender = sample(c('M','F'), size=30, replace = T, prob = c(.4,.6)))
+?sample
+?paste0
+(age=floor(runif(30,21,45)))
+(course = sample(c('Btech','Mtech','Phd'), size=30, replace=T, prob= c(.5,.3,.2)))
+table(course)
+
+(married=sample(c(TRUE,FALSE), replace = T, size = 30, prob = c(.1,.9)))
+table(married)
+df= data.frame(rollno,sname,age,course,gender,married)
+df
+
+
+#export to csv
+write.csv(df, './data/pumba.csv', row.names = F)
